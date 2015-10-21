@@ -1,9 +1,6 @@
 class HelloWorld
   def call(env)
     req = Rack::Request.new(env)
-    puts "*"*10
-    puts req.path_info
-    puts "*"*10
     case req.path_info
     when "/hello"
       [200, {"Content-type" => "text/plain"}, ["Hello, you simple world! :)"]]

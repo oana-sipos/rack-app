@@ -1,16 +1,17 @@
-require File.join(File.dirname(__FILE__), 'hello')
-require File.join(File.dirname(__FILE__), 'hellohtml')
+require_relative 'hello'
+require_relative 'hellohtml'
+require_relative '404'
 
 class HelloWorld
   def call(env)
     req = Rack::Request.new(env)
     case req.path_info
     when "/hello"
-      Hello.new.response
+      Hello.new.call(env)
     when "/hello.html"
-      Hellohtml.new.response
+      Hellohtml.new.call(env)
     else
-      [404, {"Content-Type" => "text/html"}, ["404, I'm Lost!"]]
+      Four04.new.call(env)
     end
   end
 end
